@@ -1,0 +1,67 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.2;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #faf7f1;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #fbf8f2; /* цвет фона */
+  background-image: radial-gradient(#e2e4e8 9%, transparent 10%);
+  background-size: 1.8em 1.8em; /* размер сетки точек */
+  background-position: 0 0;
+}
+
+h1 {
+  font-size: 3.0em;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 2em;
+  color: #575757;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+button {
+  display: flex;
+  width: fit-content;
+  align-self: center;
+  font-size: 1.25em;
+  font-weight: 500;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  padding: 0.6em;
+  transition: all 0.25s;
+  cursor: pointer;
+  background-color: #506dfe;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #3b54de;
+}

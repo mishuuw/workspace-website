@@ -1,0 +1,92 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width:50vw;
+    justify-self: center;
+    background-color: #fff;
+    border-radius: 1em;
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin: 3em;
+    padding: 2em;
+    filter: drop-shadow(0px .5em .5em rgba(183, 183, 183, 0.382))
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.card h1 {
+    text-align: left;
+    font-weight: 400;
+    margin: 0;
+}
+
+.card h3 {
+    text-align: left;
+    margin-bottom: 1em;
+}
+
+input {
+    border-radius: 1em;
+    padding: 1em;
+    font: inherit;
+    font-weight: 500;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #000;
+    outline: #00000000;
+    transition: all 0.15s;
+}
+
+input:hover {
+    border: 1px solid #0e002f;
+}
+
+.form_label {
+    text-align: left;
+    font-weight: bold;
+    padding: 0.5em 0;
+}
+
+.form_label_bottom {
+    text-align: left;
+    font-weight: 400;
+    color: #cc4856;
+    margin: .6em 0;
+    margin-bottom: 1.5em;
+    font-size: 1.25em;
+}
+
+form:not(form[err=''])[labelType="0"] input{
+    border: 2px solid #dc3545;
+}
+
+form:not(form[err=''])[labelType="0"] input:focus {
+    border: 2px solid #bd0000;
+    user-select: all;
+    box-shadow: 0 0 1em #dc35457d;
+}
+form:not(form[err='']) input:hover {
+    border: 2px solid #0e002f;
+}
+
+form[labelType="1"] input {
+    border: 2px solid #35dc3d;
+}
+form[labelType="1"] input:focus {
+    border: 2px solid #00bd29;
+    user-select: all;
+    box-shadow: 0 0 1em #35dc597d;
+}
+form[labelType="1"] .form_label_bottom {
+    color: #006605;
+}
+form[labelType="1"] .form_label_bottom a {
+    text-decoration: underline;
+}
+form[labelType="1"] .form_label_bottom a:hover {
+    color: #00c50a;
+    transition: all 0.15s;
+}

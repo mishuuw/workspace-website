@@ -1,0 +1,9 @@
+fastapi[all]
+sqlalchemy
+pydantic
+dotenv
+python-jose
+passlib
+hupper
+psycopg2
+bcrypt
