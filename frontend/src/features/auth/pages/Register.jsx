@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import "./Register.css"
-import navBar from "../../../shared/components/navBar"
-import { register } from '../authService';
-import { ServerRouter, useNavigate } from 'react-router';
-import axios from 'axios';
+import navBar from "../../../shared/components/navBar.jsx"
+import { register } from '../authService.jsx';
+import { useNavigate } from 'react-router';
 
 function Register() {
     

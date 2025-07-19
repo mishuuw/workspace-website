@@ -1,8 +1,7 @@
-import { Routes, Route, useNavigate } from 'react-router'
-import { useContext, useMemo } from 'react';
-import { useAuth } from '../features/auth/useAuth';
-import { publicRoutes, privateRoutes } from './routesConfig';
-import NotFound from '../shared/components/notFound';
+import { Routes, Route } from 'react-router'
+import { useAuth } from '../features/auth/useAuth.jsx';
+import { publicRoutes, privateRoutes } from './routesConfig.jsx';
+import NotFound from '../shared/components/notFound.jsx';
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth()

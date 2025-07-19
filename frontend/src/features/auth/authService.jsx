@@ -1,4 +1,4 @@
-import axiosInstance from './axiosInstance';
+import {axiosInstance} from './axiosInstance.jsx';
 
 export const register = async (credentials) => {
   const response = await axiosInstance.post('/register', credentials);
@@ -6,9 +6,14 @@ export const register = async (credentials) => {
 };
 
 export const login = async (credentials) => {
-  const response = await axiosInstance.post('/login', credentials);
+  const response = await axiosInstance.post('/login', credentials , {withCredentials: true});
   return response; // Ожидается { accessToken }
 };
+
+export const logout = async () => {
+  const response = await axiosInstance.post('/logout', {} , {withCredentials: true});
+  return response; // Ожидается { accessToken }
+}
 
 let isRefreshing = false;
 let failedQueue = [];
@@ -33,11 +38,11 @@ export const refreshToken = async () => {
 
   isRefreshing = true;
   try {
-    const response = await axiosInstance.post('/refresh-token');
-    const { token } = response.data;
+    const response = await axiosInstance.post('/refresh', {} , {withCredentials: true});
+    const { accessToken } = response.data;
     // Сохранить новый токен
-    processQueue(null, token);
-    return token;
+    processQueue(null, accessToken);
+    return accessToken;
   } catch (error) {
     processQueue(error);
     return Promise.reject(error);

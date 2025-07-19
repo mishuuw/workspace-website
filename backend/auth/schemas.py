@@ -10,3 +10,6 @@ class RegisterResponse(BaseModel):
 
 class LoginResponse(BaseModel):
     accessToken: str
+
+class LogoutResponse(BaseModel):
+    message: str

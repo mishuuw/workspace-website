@@ -1,5 +1,5 @@
 import "./Home.css"
-import navBar from "../../../shared/components/navBar"
+import navBar from "../../../shared/components/navBar.jsx"
 
 function Home() {
 

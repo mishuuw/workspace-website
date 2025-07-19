@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create({
+
+export const axiosInstance = axios.create({
   baseURL: 'https://localhost:8000',
   withCredentials: true,
 });
 
-export const setupAxiosInterceptors = (updateAccessToken, logout) => {
+export const setupAxiosInterceptors = (relog, logout, getAccessToken) => {
   axiosInstance.interceptors.request.use(
     (config) => {
-      const token = axiosInstance.accessToken;
+      const token = getAccessToken(); // вызываем функцию, чтобы получить актуальный токен
       if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
       }
@@ -26,16 +27,12 @@ export const setupAxiosInterceptors = (updateAccessToken, logout) => {
         originalRequest._retry = true;
 
         try {
-          const res = await axiosInstance.post('/refresh-token');
-          const { accessToken } = res.data;
-
-          axiosInstance.accessToken = accessToken;
-          updateAccessToken(accessToken);
+          await relog;
 
           originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
           return axiosInstance(originalRequest);
         } catch (refreshError) {
-          await logout();
+          await logout;
           return Promise.reject(refreshError);
         }
       }

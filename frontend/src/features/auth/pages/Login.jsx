@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
-import "./Login.css"
-import navBar from "../../../shared/components/navBar"
-import { ServerRouter, useNavigate } from 'react-router';
-import { useAuth } from '../useAuth';
+import { useState } from 'react';
+import "./Register.css"
+import navBar from "../../../shared/components/navBar.jsx"
+import { useAuth } from '../useAuth.jsx';
 
 function Login() {
 
     let { login } = useAuth()
     
-    let navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [errLabel, setErrLabel] = useState('');

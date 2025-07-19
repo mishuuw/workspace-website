@@ -6,3 +6,6 @@ class UserDoesNotExistError(Exception):
 
 class WrongPasswordError(Exception):
     pass
+
+class AccessForbiddenError(Exception):
+    pass

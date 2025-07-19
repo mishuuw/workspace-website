@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
-import * as authService from './authService';
-import { AuthContext } from './authContext';
-import { useAuth } from './useAuth';
+import * as authService from './authService.jsx';
+import { AuthContext } from './authContext.jsx';
 
 export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
@@ -17,41 +16,30 @@ export const AuthProvider = ({ children }) => {
 
   const logout = useCallback(async () => {
     try {
-      // await authService.logout(); Если бек потребует можно вернуть
+      await authService.logout();
     } finally {
       setAccessToken(null);
       setIsAuthenticated(false);
     }
   }, []);
 
-  // Автологин при старте
-  useEffect(() => {
-    let isMounted = true;
-
-    const restoreSession = async () => {
-      setIsLoading(true);
-      try {
-        const newToken = await authService.refreshToken();
-        if (isMounted) {
-          setAccessToken(newToken);
-          setIsAuthenticated(true);
-        }
-      } catch (error) {
-        // Неавторизован — оставляем isAuthenticated = false
-        if (isMounted) {
-          setIsAuthenticated(false);
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    restoreSession();
-
-    return () => {
-      isMounted = false;
-    };
+  const relog = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const newToken = await authService.refreshToken();
+      setAccessToken(newToken);
+      setIsAuthenticated(true);
+      return newToken;
+    } catch (error) {
+      setIsAuthenticated(false);
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
+
+  // Автологин при старте
+  useEffect(() => relog, []);
 
   const value = {
     accessToken,
@@ -59,6 +47,7 @@ export const AuthProvider = ({ children }) => {
     isLoading,
     login,
     logout,
+    relog
   };
 
   return (

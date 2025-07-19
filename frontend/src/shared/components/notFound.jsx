@@ -1,4 +1,4 @@
-import navBar from "./navBar"
+import navBar from "./navBar.jsx"
 
 export default function NotFound() {
     return (

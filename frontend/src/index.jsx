@@ -1,18 +1,20 @@
-import React, { StrictMode, useContext, useEffect } from 'react';
+import { StrictMode, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router';
-import { AuthProvider } from './features/auth/authProvider';
-import { AuthContext } from './features/auth/authContext';
+import { AuthProvider } from './features/auth/authProvider.jsx';
+import { AuthContext } from './features/auth/authContext.jsx';
 import './index.css';
-import { setupAxiosInterceptors } from './features/auth/axiosInstance';
+import { setupAxiosInterceptors } from './features/auth/axiosInstance.jsx';
 import RouterApp from './app/router.jsx';
+import { useAuth } from './features/auth/useAuth.jsx';
 
 const AppWithAxios = () => {
-  const { updateAccessToken, logout, isLoading } = useContext(AuthContext);
-
+  const { accessToken, logout, isLoading, relog} = useAuth();
+  
   useEffect(() => {
-    setupAxiosInterceptors(updateAccessToken, logout);
-  }, [updateAccessToken, logout]);
+    const getAccessToken = () => accessToken; 
+    setupAxiosInterceptors(relog, logout, getAccessToken);
+  }, [relog, logout, accessToken]);
 
     // TODO: make loading screen
   if (isLoading) return <div> Loading ... </div>

@@ -1,3 +1,4 @@
 /backend/settings/.env
 /localhost.pem
 /localhost-key.pem
+/backend/__pychache__

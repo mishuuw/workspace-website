@@ -1,11 +1,33 @@
-import Home from '../features/index/pages/Home';
-import Register from '../features/auth/pages/Register'
-import Login from '../features/auth/pages/Login'
+import { lazy, Suspense } from 'react';
+const Home = lazy(() => import('../features/index/pages/Home.jsx'));
+const Register = lazy(() => import('../features/auth/pages/Register.jsx'));
+const Login = lazy(() => import('../features/auth/pages/Login.jsx'));
 
 export const publicRoutes = [
-  { path: '/', element: <Home /> },
-  { path: '/register', element: <Register /> },
-  { path: '/login', element: <Login />}
+  {
+    path: '/',
+    element: (
+      <Suspense fallback="Loading...">
+        <Home />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/register',
+    element: (
+      <Suspense fallback="Loading...">
+        <Register />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/login',
+    element: (
+      <Suspense fallback="Loading...">
+        <Login />
+      </Suspense>
+    ),
+  },
 ];
 
 export const privateRoutes = [
